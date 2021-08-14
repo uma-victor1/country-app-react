@@ -13,6 +13,10 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "author": {
+    "name": "Uma Victor",
+    "email": "umavictor11@gmail.com"
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
