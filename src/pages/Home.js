@@ -16,6 +16,7 @@ function Home() {
         setCountries(data)
     }
     console.log(countries);
+    
     //toggle dark mode
     const toggleDarkMode = () => {
         if(mode) {
@@ -29,6 +30,20 @@ function Home() {
             setMode(current => current = !current)
         }
     }
+    // search country
+    const searchCountry = async (term) => {
+        if(term.legnth < 3 || term === '') return
+        const res = await fetch(`https://restcountries.eu/rest/v2/name/${term}`)
+        const data = await res.json()
+        await setCountries(data)
+    }
+    // filter by region
+    const filterByRegion = async (region) => {
+        if(region === '') return
+        const res = await fetch('https://restcountries.eu/rest/v2/region/${region}')
+        const data = await res.json()
+        await setCountries(data)
+    }
     return (
         <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
             <div className="w-screen shadow-md py-8 px-3 bg-white dark:bg-gray-700 dark:text-white mb-16">
@@ -38,6 +53,19 @@ function Home() {
                         <button onClick={()=> toggleDarkMode()} dangerouslySetInnerHTML={{__html: toggleBtn}}></button>
                     </div>
                 </div>
+            </div>
+            <div className="flex container mx-auto mb-10">
+                <i class="fa fa-search my-auto -mr-9 z-10 pr-2 pl-3 py-5 rounded-md text-gray-400"></i>
+                <input type='text' placeholder="Search for a country..." className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700" 
+                onChange={(term)=> searchCountry(term.target.value)}></input>
+                <select className="ml-auto my-2 p-2 shadow-md rounded-md font-medium dark:bg-gray-700" onChange={val => filterByRegion(val.target.value)}>
+                    <option>Filter by Region</option>
+                    <option value="africa">Africa</option>
+                    <option value="America">America</option>
+                    <option value="Aisa">Aisa</option>
+                    <option value="Europe">Europe</option>
+                    <option value="oceania">oceania</option>
+                </select>
             </div>
         </div>
     )
