@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 function Home() {
     const [countries, setCountries] = useState([])
@@ -62,10 +63,22 @@ function Home() {
                     <option>Filter by Region</option>
                     <option value="africa">Africa</option>
                     <option value="America">America</option>
-                    <option value="Aisa">Aisa</option>
+                    <option value="Asia">Asia</option>
                     <option value="Europe">Europe</option>
                     <option value="oceania">oceania</option>
                 </select>
+            </div>
+            <div className="container grid grid-cols-4 gap-16 mx-auto">
+                {countries.map(country, index) => <Link to={{pathname:"details", state:country}} key={index}>
+                    <ThumbDetail 
+                        title={country.name}
+                        image_url={country.flag}
+                        population={country.population}
+                        region={country.region}
+                        capital={country.capital}
+                    />
+
+                    </Link>}
             </div>
         </div>
     )
