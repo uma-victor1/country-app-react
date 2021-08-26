@@ -69,16 +69,13 @@ function Home() {
                 </select>
             </div>
             <div className="container grid grid-cols-4 gap-16 mx-auto">
-                {countries.map(country, index) => <Link to={{pathname:"details", state:country}} key={index}>
-                    <ThumbDetail 
-                        title={country.name}
-                        image_url={country.flag}
-                        population={country.population}
-                        region={country.region}
-                        capital={country.capital}
-                    />
-
-                    </Link>}
+            {countries.map( (country, index ) => <Link to={{ pathname : "details", state: country }}  key={index}><ThumbDetail 
+                                                title={country.name} 
+                                                image_url={country.flag} 
+                                                population={country.population}
+                                                region={country.region}
+                                                capital={country.capital}
+                                            /></Link> )}
             </div>
         </div>
     )
