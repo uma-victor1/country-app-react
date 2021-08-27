@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import ThumbDetail   from '../components/ThumbDetail'
 
 function Home() {
     const [countries, setCountries] = useState([])
@@ -41,7 +42,7 @@ function Home() {
     // filter by region
     const filterByRegion = async (region) => {
         if(region === '') return
-        const res = await fetch('https://restcountries.eu/rest/v2/region/${region}')
+        const res = await fetch(`https://restcountries.eu/rest/v2/region/${region}`)
         const data = await res.json()
         await setCountries(data)
     }
@@ -60,7 +61,7 @@ function Home() {
                 <input type='text' placeholder="Search for a country..." className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700" 
                 onChange={(term)=> searchCountry(term.target.value)}></input>
                 <select className="ml-auto my-2 p-2 shadow-md rounded-md font-medium dark:bg-gray-700" onChange={val => filterByRegion(val.target.value)}>
-                    <option>Filter by Region</option>
+                    <option value="">Filter by Region</option>
                     <option value="africa">Africa</option>
                     <option value="America">America</option>
                     <option value="Asia">Asia</option>
