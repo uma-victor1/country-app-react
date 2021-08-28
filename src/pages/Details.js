@@ -1,24 +1,39 @@
 import React from 'react'
+import {useState} from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 function Details() {
     const [mode, setMode] = useState(true)
     const [toggleBtn, setToggleBtn] = useState('<i class="far fa-sun"></i> light Mode')
 
-    let (state) = useLocation()
+    let {state} = useLocation()
     let history = useHistory()
 
     const goHome = ()=> {
         history.push("/")
     }
+    const toggleDarkMode = () => {
+        if(mode) {
+            document.documentElement.classList.add('dark')
+            setToggleBtn('<i class="far fa-moon"></i> Dark Mode')
+            setMode(current => current = !current)
+        }
+        if(!mode){
+            document.documentElement.classList.remove('dark')
+            setToggleBtn('<i class="far fa-sun"></i> Light Mode')
+            setMode(current => current = !current)
+        }
+    }
     return (
         <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
-            <div className="flex container mx-auto">
+            <div className="w-screen shadow-md py-8 px-3 bg-white dark:bg-gray-700 dark:text-white mb-16">
+                <div className="flex container mx-auto">
                     <h1 className="font-bold text-xl">Where in the World?</h1>
                     <div className="ml-auto font-medium">
                         <button onClick={()=> toggleDarkMode()} dangerouslySetInnerHTML={{__html: toggleBtn}}></button>
                     </div>
                 </div>
+            </div>
                 <div className="container mx-auto mb-16">
                     <button className="px-8 py-2 bg-white text-gray-600 shadow-md rounded-lg dark:bg-gray-700 dark:text-white"
                     onClick={()=> {goHome()}}
@@ -29,7 +44,6 @@ function Details() {
                 <div className="container flex mx-auto p-8 pl-0 pr-0">
                     <img src={state.flag} className="w-1/2 pr-8" alt={state.name}></img>
                     <div className="p-8 pl-0">
-                        <h2 className="font-bold text-2xl mb-8"></h2>
                         <div className="grid grid-cols-2 gap-x-20 gap-y-4">
                         <p>Native Name: <span className="dark:text-gray-400 text-gray-700 text-sm">{state.nativeName}</span></p>
                         <p>Population: <span className="dark:text-gray-400 text-gray-700 text-sm">{state.population}</span></p>
