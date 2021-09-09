@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import '../css/home.css'
 import ThumbDetail   from '../components/ThumbDetail'
 
 function Home() {
@@ -46,6 +47,7 @@ function Home() {
         const data = await res.json()
         await setCountries(data)
     }
+
     return (
         <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
             <div className="w-screen shadow-md py-8 px-3 bg-white dark:bg-gray-700 dark:text-white mb-16">
@@ -56,11 +58,11 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="flex container mx-auto mb-10">
+            <div className="flex container mx-auto mb-10 p-4">
                 <i class="fa fa-search my-auto -mr-9 z-10 pr-2 pl-3 py-5 rounded-md text-gray-400"></i>
                 <input type='text' placeholder="Search for a country..." className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700" 
                 onChange={(term)=> searchCountry(term.target.value)}></input>
-                <select className="ml-auto my-2 p-2 shadow-md rounded-md font-medium dark:bg-gray-700" onChange={val => filterByRegion(val.target.value)}>
+                <select className="ml-auto my-2 p-2 shadow-md rounded-md font-medium bg-white dark:text-gray-400 text-gray-700 dark:bg-gray-700" onChange={val => filterByRegion(val.target.value)}>
                     <option value="">Filter by Region</option>
                     <option value="africa">Africa</option>
                     <option value="America">America</option>
@@ -69,7 +71,7 @@ function Home() {
                     <option value="oceania">oceania</option>
                 </select>
             </div>
-            <div className="container grid grid-cols-4 gap-16 mx-auto">
+            <div className="container gridlay grid gap-16 mx-auto p-4">
             {countries.map( (country, index ) => <Link to={{ pathname : "details", state: country }}  key={index}><ThumbDetail 
                                                 title={country.name} 
                                                 image_url={country.flag} 

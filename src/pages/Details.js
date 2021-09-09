@@ -34,17 +34,17 @@ function Details() {
                     </div>
                 </div>
             </div>
-                <div className="container mx-auto mb-16">
+                <div className="container pl-4 mx-auto mb-16">
                     <button className="px-8 py-2 bg-white text-gray-600 shadow-md rounded-lg dark:bg-gray-700 dark:text-white"
                     onClick={()=> {goHome()}}
                     >
                     <i class="fa fa-arrow-left"></i> Back
                     </button>
                 </div>
-                <div className="container flex mx-auto p-8 pl-0 pr-0">
-                    <img src={state.flag} className="w-1/2 pr-8" alt={state.name}></img>
-                    <div className="p-8 pl-0">
-                        <div className="grid grid-cols-2 gap-x-20 gap-y-4">
+                <div className="container flex flex-col md:flex-row mx-auto p-8 pl-0 pr-0">
+                    <img src={state.flag} className="md:w-1/2 w-full p-4 md:pr-8" alt={state.name}></img>
+                    <div className="md:p-8 pl-0">
+                        <div className="grid grid-cols-2 p-4 gap-x-20 gap-y-4">
                         <p>Native Name: <span className="dark:text-gray-400 text-gray-700 text-sm">{state.nativeName}</span></p>
                         <p>Population: <span className="dark:text-gray-400 text-gray-700 text-sm">{state.population}</span></p>
                         <p>Region: <span className="dark:text-gray-400 text-gray-700 text-sm">{state.region}</span></p>
